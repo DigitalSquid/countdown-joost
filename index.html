@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Joost's 2 Year Sub Countdown</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap');
+      body {
+        text-align: center;
+        font-family: 'Open Sans';
+        background-color: #202124;
+        color: #e8eaed;
+        padding: 5rem 1rem 1rem;
+      }
+      h1 {
+        font-weight: 400;
+      }
+      .countdown > span {
+        display: inline-block;
+        width: 70px;
+        text-transform: uppercase;
+        background-color: #111;
+        /* margin: 0.1rem; */
+        padding: 0.25rem;
+        font-size: 0.8rem;
+      }
+
+      .countdown .value {
+        display: block;
+        font-size: 1.75rem;
+      }
+
+      b {
+        color: red;
+        font-weight: 400;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>How long until <b>Joost's</b> 2 year Subscriber anniversary?</h1>
+      <div class="countdown">
+        <span class="days">
+          <span class="value">0</span>
+          days
+        </span>
+        <span class="hours">
+          <span class="value">0</span>
+          hours
+        </span>
+        <span class="minutes">
+          <span class="value">0</span>
+          minutes
+        </span>
+        <span class="seconds">
+          <span class="value">0</span>
+          seconds
+        </span>
+      </div>
+    </main>
+
+    <script>
+      const targetDate = new Date('Aug 27, 2023 11:25:00').getTime();
+
+      const x = setInterval(function () {
+        const now = new Date().getTime();
+        const difference = targetDate - now;
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor(
+          (difference % (1000 * 60 * 60)) / (1000 * 60)
+        );
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        document.querySelector('.days .value').innerHTML = days;
+        document.querySelector('.hours .value').innerHTML = hours;
+        document.querySelector('.minutes .value').innerHTML = minutes;
+        document.querySelector('.seconds .value').innerHTML = seconds;
+
+        if (difference < 0) {
+          clearInterval(x);
+          document.getElementById('countdown').innerHTML =
+            "Congratulations! You've been a Subscriber for 2 years!";
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>
